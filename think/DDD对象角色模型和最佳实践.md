@@ -155,42 +155,8 @@ DDD战术设计解决的问题是“如何将领域模型在技术上落地”�
     防腐层：    Impl+Adapter
  
 ## 聚合根
-什么是聚合根？
-
-    对登录业务：UserService.login(User user)聚合根是login。
-    对支付业务:PayService.pay(PayOrder order)聚合根是pay
-    对风控业务：RiskService.inspect(String bizCode,Object request);聚合根是bizCode
-    .....
-    如同一颗大树，无论枝叶多么繁茂复杂、每个枝叶必定关联根部的毛细血管一样
-    在软件架构中，任何逻辑分支结构，必定关联输入请求中聚合根数据结构的某个值。
-    
-    这就是它被称为根的原因。
-    它是决定性的，它的数据结构决定了请求处理逻辑的拓扑形状。
-    PayOrder{
-        String buyer;//   必定有买家家相关逻辑
-        String saller;  //必定有卖家相关逻辑
-        String channel;//wx,alipay,abc.... 必定对应了如上几个渠道实现和支付逻辑
-        String status;// 对应了流程处理阶段
-        String amount;  //
-        String moneyType;  //如果是跨境交易，涉及各种币种
-    }
-    BizCode{
-        String code；//风控码
-        List<Rule> rules;//规则
-    }
-    Rule{
-        Boolean isRealTime;//是否实时
-        String engineType;//引擎类型
-        String expression;//规则内容
-        String resultStragetray;//结果处理策略
-        .....
-    }
-用途
-    
-    1，一个有经验的架构师很容易从这些数据反推出领域架构的骨架。在一些遗留系统的业务梳理中，聚合根是个比较有效的梳理抓手。
-    
-    2，代码CR中，有经验的架构师很容易从接口中提取聚合根，评价接口设计的通用性、完备性、稳定性
-
+ 
+[聚合根](聚合根.md)
 
 
 ## 实体/实体服务
@@ -199,13 +165,9 @@ DDD战术设计解决的问题是“如何将领域模型在技术上落地”�
 
 我们从争论来理解实体、实体服务的最佳实践应该是什么。
 
- **充血还是贫血的争论**
-    
-    问题1：实体和实体服务的生命周期，一个是Request/Response，一个是Application，如果做成一个充血模型。生命周期矛盾如何解决？
-    问题2：实体如果经常暴漏给外部，这样的充血对象暴漏出去的安全问题如何解决？
-    问题3：业务逻辑涉及实体A和B，充血模型代码如何实现？如果是ABC呢？如果是……
-    问题4：业务逻辑如果涉及到底层基础设施，这样的实体会否很重？
-    问题4：业务逻辑如果有多个，领域对象中的逻辑蜕变为接口，意义何在？
+[DDD对象角色模型和最佳实践.md](DDD%B6%D4%CF%F3%BD%C7%C9%AB%C4%A3%D0%CD%BA%CD%D7%EE%BC%D1%CA%B5%BC%F9.md)
+
+
  
 ## 
 
